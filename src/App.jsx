@@ -1,10 +1,27 @@
+import { useState } from "react";
+import Form from "./Form";
+import Card from "./Card";
+import "./App.css"
+
 function App() {
-  //Aqui deberias agregar los estados y los handlers para los inputs
+  
+  const [pokemons, setPokemon] = useState([]);
+
+  const addPokemon = (pokemon) => {
+    setPokemon([...pokemons, pokemon])
+  };
+
+  let content;
+
+  if (pokemons.length > 0) {
+    content = <Card pokemons={pokemons}/>
+  }
 
   return (
     <div className="App">
-      <h1>Elige un color</h1>
-      <form>{/* aqui deberias escribir tu codigo */}</form>
+      <h1>¡Coloca un Pokémon!</h1>
+      <Form onAddPokemon={addPokemon}/>
+      {content}
     </div>
   );
 }
